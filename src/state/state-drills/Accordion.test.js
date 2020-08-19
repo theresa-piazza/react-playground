@@ -1,48 +1,44 @@
 import React from 'react';
-import Accordion from './Accordion';
+import Tabs from './Tabs';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
+const sectionsProp = [
+    { 
+      title: 'AE Houseman',
+      content: 'Good creatures, do you love your lives / Here is a knife like other knives',
+    },
+    { 
+      title: 'Penelope Gilliat',
+      content: 'For years the thought of you scorched my eyeballs / Now all is well under the scalding sun.',
+    },
+    { title: 'Elinor Wylie',
+      content: 'In masks outrageous and austere / The years go by in single file; / But none has merited my fear, / And none has quite escaped my smile.',
+    }
+  ];
 
-describe(`Tabs Component`, () => {
-    const sectionsProp = [
-        { name: 'First tab',
-          content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam exercitationem quos consectetur expedita consequatur. Fugit, sapiente aspernatur corporis velit, dolor eum reprehenderit provident ipsam, maiores incidunt repellat! Facilis, neque doloremque.' },
-        { name: 'Second tab',
-          content: 'Laboriosam exercitationem quos consectetur expedita consequatur. Fugit, sapiente aspernatur corporis velit, dolor eum reprehenderit provident ipsam, maiores incidunt repellat! Facilis, neque doloremque. Lorem ipsum dolor sit amet consectetur adipisicing elit.' },
-        { name: 'Third tab',
-          content: 'Fugit, sapiente aspernatur corporis velit, dolor eum reprehenderit provident ipsam, maiores incidunt repellat! Facilis, neque doloremque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam exercitationem quos consectetur expedita consequatur.' },
-        ];
+describe(`Accordion Component`, () => {
+   it('renders empty given no Accordion without errors', () => {
+        const wrapper = shallow(<Accordion />)
+        expect(toJson(warpper)).toMatchSnapshot()
+   })
 
-    it('renders without errors', () => {
-        const div = document.createElement('div');
-        ReactDOM.render(<Tabs />, div);
-        ReactDOM.unmountComponentAtNode(div);
-    })
-
-    it('renders empty given no tabs', () => {
-        const wrapper = shallow(<Tabs />)
+    it('renders no sections by default', () => {
+        const wrapper = shallow(<Accordion sections ={sectionsProp} />)
         expect(toJson(wrapper)).toMatchSnapshot()
     })
 
-    it('renders the first tab by default', () => {
-        const wrapper = shallow(<Tabs tabs={tabsProp} />)
-        expect(toJson(wrapper)).toMatchSnapshot()
-      })
-
-    it('closes the first tab and opens any clicked tab', () => {
-        const wrapper = shallow(<Tabs tabs={tabsProp} />)
-        wrapper.find('button')
-        console.log('>>> WRAPPER <<<')
-        console.log(wrapper.debug())
-        console.log('>>> FIND(BUTTON) <<<')
-        console.log(wrapper.find('button').debug())
-        console.log(wrapper.find('button').at(1).debug())
-      })
-      
-      it('closes the first tab and opens any clicked tab', () => {
-        const wrapper = shallow(<Tabs tabs={tabsProp} />)
+    it('opens any clicked section', () => {
+        const wrapper = shallow(<Accordion sections={sectionsProp} />)
         wrapper.find('button').at(1).simulate('click')
         expect(toJson(wrapper)).toMatchSnapshot()
-      })  
+    })
+
+    it('only opens 1 section at a time', () => {
+        const wrapper = shallow(<Accordion sections={sectionsProp} />)
+        wrapper.find('button').at(1).simulate('click')
+        wrapper.find('button').at(2).simulate('click')
+        expect(toJson(wrapper)).toMatchSnapshot()
+      })
+   
 })
