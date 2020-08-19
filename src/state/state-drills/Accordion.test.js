@@ -1,12 +1,11 @@
 import React from 'react';
-
 import Accordion from './Accordion';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 
-describe.skip(`Tabs Component`, () => {
-    const tabsProp = [
+describe(`Tabs Component`, () => {
+    const sectionsProp = [
         { name: 'First tab',
           content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam exercitationem quos consectetur expedita consequatur. Fugit, sapiente aspernatur corporis velit, dolor eum reprehenderit provident ipsam, maiores incidunt repellat! Facilis, neque doloremque.' },
         { name: 'Second tab',
