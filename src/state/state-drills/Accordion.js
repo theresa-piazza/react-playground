@@ -1,40 +1,44 @@
-import React from 'react';
+import React, { Component } from 'react'
 
-export default class Accordion extends React.Component {
-    static defaultProps={
-        sections: [] 
+export default class Accordion extends Component {
+    static defaultProps = {
+        sections: []
     };
+
     state = {
         activeSectionIndex: null,
-    };
-    handleSetActiveSecion = (sectionIndex) => {
-        this.setState({ activeSectionIndex: sectionIndex })
     }
-    renderItem(section, idx, activeSectionIndex) {
+
+    handleSetActiveSection = (sectionIndex) => {
+        this.setState({activeSectionIndex: sectionIndex})
+    }
+
+    renderItem(section, index, activeSectionIndex) {
         return (
-            <li className='Accordion_item' key={idx}>
-          <button 
-            type='button'
-            onClick={() => this.handleSetActiveSecion(idx)}
-            >
-                {section.title}
-          </button>
-          {(activeSectionIndex === idx) && <p>{section.content}</p>}
-          </li>
+            <li className='Accordion_item' key={index}>
+                <button type='button'
+                onClick={() => this.handleSetActiveSection(index)}
+                >
+                    {section.title}
+                </button>
+                {(activeSectionIndex === index) && <p>{section.content}</p>}
+            </li>
         )
-      }
+    }
 
-      render() {
-          const { activeSectionIndex } = this.state
-          const { sections } = this.props
-            return (
-                <ul className='Accordion'>
-                    {sections.map((sections, idx))}
-                    this.renderItems(section, idx, activeSectionIndex)
+    render() {
+        const { activeSectionIndex } = this.state
+        const { sections } = this.props
+        return (
+            <div>
+                <h1>Some Favorites...</h1>
+            <ul className='Accordion'>
+                {sections.map((section, index) =>
+                this.renderItem(section, index, activeSectionIndex)
                 )}
-                </ul>
+            </ul>
+            </div>
         )
-      }
+    }
 }
-
 
