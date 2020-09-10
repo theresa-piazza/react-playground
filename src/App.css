@@ -4,12 +4,16 @@
     min-height: calc(100vh - 80px);
   }
 
-  .left {
-    background-color: darkslategray;
-    color: azure;
+
+  ul, form, h1 {
+    padding-left: 50px;
+    color: hotpink;
+    font-weight: bold;
+    size: 45 px;
   }
-  
-  .right {
-    background-color: wheat;
-    color: firebrick;
+
+  .demonym_app {
+    border: 2px solid hotpink;
+    padding: 20px;
   }
+

@@ -1,20 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
+// eslint-disable-next-line 
+import Accordion from './state/state-drills/Accordion';
 import './App.css';
-import Messages from './Messages';
-import TheDate from './state/TheDate';
+// eslint-disable-next-line 
+import AddItemForm from './state/state-drills/AddItemForm';
+// eslint-disable-next-line 
+import ShoppingList from './state/state-drills/ShoppingList';
 
-class App extends Component {
+
+class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1>YOUR APPLICATION NAME!</h1>
-        <div>Hello!</div>
-        <TheDate></TheDate>
-        <Messages name="Messages" unread={0} />
-        <Messages name="Notifications" unread={10} />
+       
       </div>
     );
   }
-}
+} 
 
 export default App;
+
